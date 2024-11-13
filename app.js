@@ -53,8 +53,6 @@ app.get('/students', async (req, res) => {
 });
 
 
-//hello
-
 // A route to add a student
 app.post('/addStudent', async (req, res) => {
   const { name, rollNumber, attendance } = req.body;  // Get student data from the request body

@@ -4,8 +4,8 @@ function App() {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    // Fetch students from the backend API
-    fetch('/students')
+    // Fetch students from the backend API on port 3000
+    fetch('http://localhost:3000/students')
       .then((response) => response.json())
       .then((data) => setStudents(data))
       .catch((error) => console.error('Error fetching students:', error));

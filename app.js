@@ -1,7 +1,8 @@
-// Import express and mongoose
+// Import express, mongoose, and path
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 
 // Configure environment variables
 dotenv.config({ path: './config/.env' });
@@ -33,18 +34,7 @@ const Student = mongoose.model('Student', studentSchema);
 // Middleware to parse JSON data from request body
 app.use(express.json());
 
-// Middleware to serve static files like CSS, JS
-app.use(express.static('public'));
-
-// Set the view engine to EJS
-app.set('view engine', 'ejs');
-
-// Route to home page 
-app.get('/', (req, res) => {
-  res.send('Hello, Attendance Tracker System!');
-});
-
-// A route to track attendance
+// API Routes
 app.get('/attendance', (req, res) => {
   res.send('Attendance page');
 });
@@ -53,7 +43,7 @@ app.get('/attendance', (req, res) => {
 app.get('/students', async (req, res) => {
   try {
     const students = await Student.find();
-    res.render('students', { students });
+    res.json(students);  // Send students as JSON to React
   } catch (err) {
     console.error(err);
     res.status(500).send('Error fetching students');
@@ -63,7 +53,6 @@ app.get('/students', async (req, res) => {
 // A route to add a student
 app.post('/addStudent', async (req, res) => {
   const { name, rollNumber, attendance } = req.body;
-
   const student = new Student({ name, rollNumber, attendance });
 
   try {
@@ -73,6 +62,14 @@ app.post('/addStudent', async (req, res) => {
     res.status(500).send('Error adding student');
   }
 });
+
+// Serve React App in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 // 404 handler
 app.use((req, res, next) => {

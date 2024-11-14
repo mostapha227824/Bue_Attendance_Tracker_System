@@ -1,13 +1,24 @@
 // Import express and mongoose
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
-const PORT = 3000;
+const dotenv = require('dotenv');
 
-// Connect to MongoDB without deprecated options
-mongoose.connect('mongodb://localhost/attendanceDB')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Could not connect to MongoDB', err));
+// Configure environment variables
+dotenv.config({ path: './config/.env' });
+
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/attendanceDB';
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('Could not connect to MongoDB', err);
+  });
+
+const app = express();
 
 // Define a simple schema for the student
 const studentSchema = new mongoose.Schema({
@@ -41,10 +52,7 @@ app.get('/attendance', (req, res) => {
 // A route to manage student data
 app.get('/students', async (req, res) => {
   try {
-    // Fetch all students from the database
     const students = await Student.find();
-    
-    // Render the students.ejs view and pass the students data
     res.render('students', { students });
   } catch (err) {
     console.error(err);
@@ -52,19 +60,12 @@ app.get('/students', async (req, res) => {
   }
 });
 
-
 // A route to add a student
 app.post('/addStudent', async (req, res) => {
-  const { name, rollNumber, attendance } = req.body;  // Get student data from the request body
+  const { name, rollNumber, attendance } = req.body;
 
-  // Create a new student instance
-  const student = new Student({
-    name,
-    rollNumber,
-    attendance
-  });
+  const student = new Student({ name, rollNumber, attendance });
 
-  // Save the student to the database
   try {
     await student.save();
     res.send('Student added successfully');

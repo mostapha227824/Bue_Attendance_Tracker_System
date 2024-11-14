@@ -1,9 +1,12 @@
-// Import express, mongoose, dotenv, cors, and path
+// app.js
+
+// Import required modules
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
+const studentRoutes = require('./routes/students');
 
 // Configure environment variables
 dotenv.config({ path: './config/.env' });
@@ -22,53 +25,12 @@ mongoose.connect(MONGO_URI)
 
 const app = express();
 
-// Enable CORS
+// Enable CORS and JSON parsing
 app.use(cors());
-
-// Middleware to parse JSON data from request body
 app.use(express.json());
 
-// Define a simple schema for the student
-const studentSchema = new mongoose.Schema({
-  name: String,
-  rollNumber: String,
-  attendance: Boolean
-});
-
-// Create a model for the student
-const Student = mongoose.model('Student', studentSchema);
-
-// API Routes
-
-// Get attendance route
-app.get('/attendance', (req, res) => {
-  res.send('Attendance page');
-});
-
-// Get all students
-app.get('/students', async (req, res) => {
-  try {
-    const students = await Student.find();
-    res.json(students);  // Send students as JSON to React
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error fetching students');
-  }
-});
-
-// Add a student
-app.post('/addStudent', async (req, res) => {
-  const { name, rollNumber, attendance } = req.body;
-  const student = new Student({ name, rollNumber, attendance });
-
-  try {
-    await student.save();
-    res.send('Student added successfully');
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error adding student');
-  }
-});
+// Use the student routes
+app.use(studentRoutes);
 
 // Serve React App in production
 if (process.env.NODE_ENV === 'production') {

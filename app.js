@@ -1,7 +1,8 @@
-// Import express, mongoose, and path
+// Import express, mongoose, dotenv, cors, and path
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const path = require('path');
 
 // Configure environment variables
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost/attendanceDB';
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB');
   })
@@ -20,6 +21,12 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   });
 
 const app = express();
+
+// Enable CORS
+app.use(cors());
+
+// Middleware to parse JSON data from request body
+app.use(express.json());
 
 // Define a simple schema for the student
 const studentSchema = new mongoose.Schema({
@@ -31,15 +38,14 @@ const studentSchema = new mongoose.Schema({
 // Create a model for the student
 const Student = mongoose.model('Student', studentSchema);
 
-// Middleware to parse JSON data from request body
-app.use(express.json());
-
 // API Routes
+
+// Get attendance route
 app.get('/attendance', (req, res) => {
   res.send('Attendance page');
 });
 
-// A route to manage student data
+// Get all students
 app.get('/students', async (req, res) => {
   try {
     const students = await Student.find();
@@ -50,7 +56,7 @@ app.get('/students', async (req, res) => {
   }
 });
 
-// A route to add a student
+// Add a student
 app.post('/addStudent', async (req, res) => {
   const { name, rollNumber, attendance } = req.body;
   const student = new Student({ name, rollNumber, attendance });
@@ -59,6 +65,7 @@ app.post('/addStudent', async (req, res) => {
     await student.save();
     res.send('Student added successfully');
   } catch (err) {
+    console.error(err);
     res.status(500).send('Error adding student');
   }
 });
@@ -71,12 +78,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// 404 handler
+// 404 handler for undefined routes
 app.use((req, res, next) => {
   res.status(404).send('Page Not Found');
 });
 
-// 500 server error handler
+// 500 error handler for server errors
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something went wrong!');

@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function App() {
+function StudentsList() {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    // Fetch students from the backend API on port 3000
+    // Fetch students from the backend
     fetch('http://localhost:3000/students')
-      .then((response) => response.json())
-      .then((data) => setStudents(data))
-      .catch((error) => console.error('Error fetching students:', error));
+      .then(response => response.json())
+      .then(data => setStudents(data))
+      .catch(error => console.error('Error fetching students:', error));
   }, []);
 
   return (
-    <div className="App">
-      <h1>Student List</h1>
-      <ul>
-        {students.map((student) => (
-          <li key={student._id}>
-            {student.name} (Roll Number: {student.rollNumber}, Attendance: {student.attendance ? 'Present' : 'Absent'})
-          </li>
-        ))}
-      </ul>
+    <div>
+      <h2>Students List</h2>
+      {students.length > 0 ? (
+        <ul>
+          {students.map(student => (
+            <li key={student._id}>{student.name}</li> // Adjust to match your data format
+          ))}
+        </ul>
+      ) : (
+        <p>No students found.</p>
+      )}
     </div>
   );
 }
 
-export default App;
+export default StudentsList;

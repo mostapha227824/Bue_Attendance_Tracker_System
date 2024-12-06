@@ -16,4 +16,4 @@ Open your browser and visit http://localhost:3000 to see the application running
 Technologies Used:
 Express.js
 MongoDB (Mongoose)
-EJS (Embedded JavaScript Templates)
+

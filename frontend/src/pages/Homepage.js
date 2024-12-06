@@ -23,7 +23,7 @@ const Homepage = () => {
                         </StyledTitle>
                         <StyledText>
                             The British university In egypt Attendance management System, Developed By ICS Students 2025 Class, Covers class organization, and add students and faculty.
-                            Seamlessly track attendance, assess performance, and provide feedback.
+                        track attendance, assess performance.
                             Access records, view marks.
                         </StyledText>
                         <StyledBox>

@@ -52,7 +52,7 @@ const AdminHomePage = () => {
                             <Data start={0} end={numberOfClasses} duration={5} />
                         </StyledPaper>
                     </Grid>
-                    <Grid item xs={1} md={1} lg={1}>
+                    <Grid item xs={12} md={3} lg={3}>
                         <StyledPaper>
                             <img src={Teachers} alt="Teachers" />
                             <Title>

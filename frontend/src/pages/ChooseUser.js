@@ -11,7 +11,6 @@ import {
 import { AccountCircle, School, Group } from '@mui/icons-material';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../redux/userRelated/userHandle';
 import Popup from '../components/Popup';
 
 const ChooseUser = ({ visitor }) => {
@@ -27,42 +26,24 @@ const ChooseUser = ({ visitor }) => {
 
   const navigateHandler = (user) => {
     if (user === "Admin") {
-      if (visitor === "guest") {
-        const email = "mostapha227824"
-        const fields = { email, password }
-        setLoader(true)
-        dispatch(loginUser(fields, user))
-      }
-      else {
+     
         navigate('/Adminlogin');
-      }
+      
     }
 
     else if (user === "Student") {
-      if (visitor === "guest") {
-        const rollNum = "1"
-        const studentName = "mostapha abdulaziz"
-        const fields = { rollNum, studentName, password }
-        setLoader(true)
-        dispatch(loginUser(fields, user))
-      }
-      else {
+     
+      
         navigate('/Studentlogin');
-      }
+      
     }
 
     else if (user === "Teacher") {
-      if (visitor === "guest") {
-        const email = "amgad"
-        const fields = { email, password }
-        setLoader(true)
-        dispatch(loginUser(fields, user))
-      }
-      else {
+     
         navigate('/Teacherlogin');
       }
     }
-  }
+  
 
   useEffect(() => {
     if (status === 'success' || currentUser !== null) {

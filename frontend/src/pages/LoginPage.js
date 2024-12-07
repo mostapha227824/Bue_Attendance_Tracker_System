@@ -20,7 +20,6 @@ const LoginPage = ({ role }) => {
     const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);;
 
     const [toggle, setToggle] = useState(false)
-    const [guestLoader, setGuestLoader] = useState(false)
     const [loader, setLoader] = useState(false)
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
@@ -73,29 +72,6 @@ const LoginPage = ({ role }) => {
         if (name === 'studentName') setStudentNameError(false);
     };
 
-    const guestModeHandler = () => {
-        const password = "12345"
-
-        if (role === "Admin") {
-            const email = "mostapha227824@bue.edu.eg"
-            const fields = { email, password }
-            setGuestLoader(true)
-            dispatch(loginUser(fields, role))
-        }
-        else if (role === "Student") {
-            const rollNum = "1"
-            const studentName = "mostapha abdulaziz"
-            const fields = { rollNum, studentName, password }
-            setGuestLoader(true)
-            dispatch(loginUser(fields, role))
-        }
-        else if (role === "Teacher") {
-            const email = "amgad"
-            const fields = { email, password }
-            setGuestLoader(true)
-            dispatch(loginUser(fields, role))
-        }
-    }
 
     useEffect(() => {
         if (status === 'success' || currentUser !== null) {
@@ -117,7 +93,7 @@ const LoginPage = ({ role }) => {
             setMessage("Network Error")
             setShowPopup(true)
             setLoader(false)
-            setGuestLoader(false)
+
         }
     }, [status, currentRole, navigate, error, response, currentUser]);
 
@@ -150,7 +126,7 @@ const LoginPage = ({ role }) => {
                 fullWidth
                 id="rollNumber"
                 label="Enter your ID Number"
-                name="rollNumber" // Changed from IDNumber to rollNumber
+                name="rollNumber" 
                 autoComplete="off"
                 type="number"
                 autoFocus
@@ -262,7 +238,7 @@ const LoginPage = ({ role }) => {
             </Grid>
             <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={guestLoader}
+            
             >
                 <CircularProgress color="primary" />
                 Please Wait

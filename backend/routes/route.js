@@ -1,5 +1,6 @@
 const router = require('express').Router();
-
+const { check } = require('express-validator');
+const { subjectCreate } = require('../controllers/subject-controller.js');
 const { adminRegister, adminLogIn, getAdminDetail} = require('../controllers/admin-controller.js');
 
 const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('../controllers/class-controller.js');
@@ -20,7 +21,7 @@ const {
     clearAllStudentsAttendance,
     removeStudentAttendanceBySubject,
     removeStudentAttendance } = require('../controllers/student_controller.js');
-const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
+const { classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
 
 // Admin
@@ -82,9 +83,19 @@ router.delete("/Sclasses/:id", deleteSclasses)
 router.delete("/Sclass/:id", deleteSclass)
 
 // Subject
-
-router.post('/SubjectCreate', subjectCreate);
-
+router.post(
+    '/SubjectCreate',
+    [
+        check('subjects.*.subName').notEmpty().withMessage('Subject name is required'),
+        check('subjects.*.subCode').notEmpty().withMessage('Subject code is required'),
+        check('subjects.*.sessions')
+            .isInt({ min: 1 })
+            .withMessage('Sessions must be a positive integer'),
+        check('adminID').notEmpty().withMessage('Admin ID is required'),
+        check('sclassName').notEmpty().withMessage('Class name is required'),
+    ],
+    subjectCreate
+);
 router.get('/AllSubjects/:id', allSubjects);
 router.get('/ClassSubjects/:id', classSubjects);
 router.get('/FreeSubjectList/:id', freeSubjectList);

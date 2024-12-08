@@ -1,8 +1,14 @@
 const Subject = require('../models/subjectSchema.js');
 const Teacher = require('../models/teacherSchema.js');
 const Student = require('../models/studentSchema.js');
+const { validationResult } = require('express-validator');
 
 const subjectCreate = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
         const subjects = req.body.subjects.map((subject) => ({
             subName: subject.subName,
@@ -31,6 +37,7 @@ const subjectCreate = async (req, res) => {
         res.status(500).json(err);
     }
 };
+
 
 const allSubjects = async (req, res) => {
     try {

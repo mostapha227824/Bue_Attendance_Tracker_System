@@ -27,6 +27,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         default: "Student"
     },
+    
     examResult: [
         {
             subName: {
@@ -49,12 +50,14 @@ const studentSchema = new mongoose.Schema({
             enum: ['Present', 'Absent'],
             required: true
         },
+        
         subName: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'subject',
             required: true
         }
     }]
+
 });
 
 module.exports = mongoose.model("student", studentSchema);

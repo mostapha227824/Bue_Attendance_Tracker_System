@@ -272,6 +272,10 @@ const removeStudentAttendance = async (req, res) => {
 };
 
 
+
+
+
+
 module.exports = {
     studentRegister,
     studentLogIn,

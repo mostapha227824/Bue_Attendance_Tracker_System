@@ -6,7 +6,7 @@ import { Grid, Box, Typography, Paper, Checkbox, FormControlLabel, TextField, Cs
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import bgpic from "../../assets/designlogin.jpg"
-import { LightPurpleButton } from '../../components/buttonStyles';
+import { RedButton } from '../../components/buttonStyles';
 import { registerUser } from '../../redux/userRelated/userHandle';
 import styled from 'styled-components';
 import Popup from '../../components/Popup';
@@ -167,14 +167,14 @@ const AdminRegisterPage = () => {
                                     label="Remember me"
                                 />
                             </Grid>
-                            <LightPurpleButton
+                            <RedButton
                                 type="submit"
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
                                 {loader ? <CircularProgress size={24} color="inherit"/> : "Register"}
-                            </LightPurpleButton>
+                            </RedButton>
                             <Grid container>
                                 <Grid>
                                     Already have an account?

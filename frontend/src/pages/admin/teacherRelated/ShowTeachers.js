@@ -9,7 +9,7 @@ import {
 import { deleteUser } from '../../../redux/userRelated/userHandle';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { StyledTableCell, StyledTableRow } from '../../../components/styles';
-import { BlueButton, GreenButton } from '../../../components/buttonStyles';
+import { RedButton, BlackButton } from '../../../components/buttonStyles';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import SpeedDialTemplate from '../../../components/SpeedDialTemplate';
 import Popup from '../../../components/Popup';
@@ -35,9 +35,9 @@ const ShowTeachers = () => {
     } else if (response) {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                <GreenButton variant="contained" onClick={() => navigate("/Admin/teachers/chooseclass")}>
+                <BlackButton variant="contained" onClick={() => navigate("/Admin/teachers/chooseclass")}>
                     Add Teacher
-                </GreenButton>
+                </BlackButton>
             </Box>
         );
     } else if (error) {
@@ -132,10 +132,10 @@ const ShowTeachers = () => {
                                             <IconButton onClick={() => deleteHandler(row.id, "Teacher")}>
                                                 <PersonRemoveIcon color="error" />
                                             </IconButton>
-                                            <BlueButton variant="contained"
+                                            <RedButton variant="contained"
                                                 onClick={() => navigate("/Admin/teachers/teacher/" + row.id)}>
                                                 View
-                                            </BlueButton>
+                                            </RedButton>
                                         </StyledTableCell>
                                     </StyledTableRow>
                                 );

@@ -1,4 +1,4 @@
-* {
+/* * {
   font-family: 'Poppins', sans-serif;
   margin: 0;
 }
@@ -15,24 +15,20 @@ a {
 :root {
   --color-bg: #1f1f38;
   --color-bg-variant: #2c2c6c;
-  --color-primary: #4db5ff;
-  --color-primary-variant: rgba(77, 181, 255, 0.4);
-  --color-light: rgba(255, 255, 255, 0.6);
-}
+  --color-primary: #21587f;
+  --color-primary-variant: rgba(71, 116, 148, 0.4);
+  --color-light: rgba(146, 24, 24, 0.6);
+} */
 
 /* FORM */
-.register {
+/* .register {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* color: #ffffff; */
-  /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1510936111840-65e151ad71bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=890&q=80"); */
-  /* background-color: var(--color-bg);
-  background-size: cover;
-  background-blend-mode: darken; */
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+
 }
 
 .registerTitle {
@@ -92,4 +88,4 @@ a {
     padding: 20px;
     border-radius: 12px;
   }
-}
+} */

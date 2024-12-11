@@ -6,7 +6,7 @@ import {
     getError,
     stuffDone
 } from './studentSlice';
-const REACT_APP_BASE_URL = "http://localhost:50001";
+const REACT_APP_BASE_URL = "http://localhost:5001";
 export const getAllStudents = (id) => async (dispatch) => {
     dispatch(getRequest());
 

@@ -4,7 +4,7 @@ const Sclass = require('../models/sclassSchema.js');
 const Student = require('../models/studentSchema.js');
 const Teacher = require('../models/teacherSchema.js');
 const Subject = require('../models/subjectSchema.js');
-
+const Form = require('../models/absenceSchema.js');
 
 
 const adminRegister = async (req, res) => {

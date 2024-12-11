@@ -3,7 +3,7 @@ import { getClassStudents, getSubjectDetails } from '../../../redux/sclassRelate
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Tab, Container, Typography, BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
-import { BlueButton, GreenButton, PurpleButton } from '../../../components/buttonStyles';
+import { RedButton, BlackButton } from '../../../components/buttonStyles';
 import TableTemplate from '../../../components/TableTemplate';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -58,20 +58,20 @@ const ViewSubject = () => {
   const StudentsAttendanceButtonHaver = ({ row }) => {
     return (
       <>
-        <BlueButton
+        <RedButton
           variant="contained"
           onClick={() => navigate("/Admin/students/student/" + row.id)}
         >
           View
-        </BlueButton>
-        <PurpleButton
+        </RedButton>
+        <RedButton
           variant="contained"
           onClick={() =>
             navigate(`/Admin/subject/student/attendance/${row.id}/${subjectID}`)
           }
         >
           Take Attendance
-        </PurpleButton>
+        </RedButton>
       </>
     );
   };
@@ -79,16 +79,16 @@ const ViewSubject = () => {
   const StudentsMarksButtonHaver = ({ row }) => {
     return (
       <>
-        <BlueButton
+        <RedButton
           variant="contained"
           onClick={() => navigate("/Admin/students/student/" + row.id)}
         >
           View
-        </BlueButton>
-        <PurpleButton variant="contained"
+        </RedButton>
+        <RedButton variant="contained"
           onClick={() => navigate(`/Admin/subject/student/marks/${row.id}/${subjectID}`)}>
           Provide Marks
-        </PurpleButton>
+        </RedButton>
       </>
     );
   };
@@ -99,12 +99,12 @@ const ViewSubject = () => {
         {getresponse ? (
           <>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-              <GreenButton
+              <BlackButton
                 variant="contained"
                 onClick={() => navigate("/Admin/class/addstudents/" + classID)}
               >
                 Add Students
-              </GreenButton>
+              </BlackButton>
             </Box>
           </>
         ) : (
@@ -169,10 +169,10 @@ const ViewSubject = () => {
             Teacher Name : {subjectDetails.teacher.name}
           </Typography>
           :
-          <GreenButton variant="contained"
+          <BlackButton variant="contained"
             onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)}>
             Add Subject Teacher
-          </GreenButton>
+          </BlackButton>
         }
       </>
     );

@@ -10,7 +10,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { resetSubjects } from "../../../redux/sclassRelated/sclassSlice";
-import { BlueButton, GreenButton, PurpleButton } from "../../../components/buttonStyles";
+import { RedButton, BlackButton } from "../../../components/buttonStyles";
 import TableTemplate from "../../../components/TableTemplate";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
@@ -75,14 +75,14 @@ const ClassDetails = () => {
                 <IconButton onClick={() => deleteHandler(row.id, "Subject")}>
                     <DeleteIcon color="error" />
                 </IconButton>
-                <BlueButton
+                <RedButton
                     variant="contained"
                     onClick={() => {
                         navigate(`/Admin/class/subject/${classID}/${row.id}`)
                     }}
                 >
                     View
-                </BlueButton >
+                </RedButton >
             </>
         );
     };
@@ -103,12 +103,12 @@ const ClassDetails = () => {
             <>
                 {response ?
                     <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                        <GreenButton
+                        <BlackButton
                             variant="contained"
                             onClick={() => navigate("/Admin/addsubject/" + classID)}
                         >
                             Add Subjects
-                        </GreenButton>
+                        </BlackButton>
                     </Box>
                     :
                     <>
@@ -143,20 +143,20 @@ const ClassDetails = () => {
                 <IconButton onClick={() => deleteHandler(row.id, "Student")}>
                     <PersonRemoveIcon color="error" />
                 </IconButton>
-                <BlueButton
+                <RedButton
                     variant="contained"
                     onClick={() => navigate("/Admin/students/student/" + row.id)}
                 >
                     View
-                </BlueButton>
-                <PurpleButton
+                </RedButton>
+                <RedButton
                     variant="contained"
                     onClick={() =>
                         navigate("/Admin/students/student/attendance/" + row.id)
                     }
                 >
                     Attendance
-                </PurpleButton>
+                </RedButton>
             </>
         );
     };
@@ -178,12 +178,12 @@ const ClassDetails = () => {
                 {getresponse ? (
                     <>
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                            <GreenButton
+                            <BlackButton
                                 variant="contained"
                                 onClick={() => navigate("/Admin/class/addstudents/" + classID)}
                             >
                                 Add Students
-                            </GreenButton>
+                            </BlackButton>
                         </Box>
                     </>
                 ) : (
@@ -227,20 +227,20 @@ const ClassDetails = () => {
                     Number of Students: {numberOfStudents}
                 </Typography>
                 {getresponse &&
-                    <GreenButton
+                    <BlackButton
                         variant="contained"
                         onClick={() => navigate("/Admin/class/addstudents/" + classID)}
                     >
                         Add Students
-                    </GreenButton>
+                    </BlackButton>
                 }
                 {response &&
-                    <GreenButton
+                    <BlackButton
                         variant="contained"
                         onClick={() => navigate("/Admin/addsubject/" + classID)}
                     >
                         Add Subjects
-                    </GreenButton>
+                    </BlackButton>
                 }
             </>
         );

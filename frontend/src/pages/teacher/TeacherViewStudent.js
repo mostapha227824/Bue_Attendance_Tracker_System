@@ -6,7 +6,7 @@ import { Box, Button, Collapse, Table, TableBody, TableHead, Typography } from '
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { calculateOverallAttendancePercentage, calculateSubjectAttendancePercentage, groupAttendanceBySubject } from '../../components/attendanceCalculator';
 import CustomPieChart from '../../components/CustomPieChart'
-import { PurpleButton } from '../../components/buttonStyles';
+import { RedButton } from '../../components/buttonStyles';
 import { StyledTableCell, StyledTableRow } from '../../components/styles';
 
 const TeacherViewStudent = () => {
@@ -104,9 +104,9 @@ const TeacherViewStudent = () => {
                                                     <StyledTableCell>{sessions}</StyledTableCell>
                                                     <StyledTableCell>{subjectAttendancePercentage}%</StyledTableCell>
                                                     <StyledTableCell align="center">
-                                                        <Button variant="contained" onClick={() => handleOpen(subId)}>
+                                                        <RedButton variant="contained" onClick={() => handleOpen(subId)}>
                                                             {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Details
-                                                        </Button>
+                                                        </RedButton>
                                                     </StyledTableCell>
                                                 </StyledTableRow>
                                                 <StyledTableRow>
@@ -199,13 +199,13 @@ const TeacherViewStudent = () => {
                             })}
                         </>
                     }
-                    <PurpleButton variant="contained"
+                    <RedButton variant="contained"
                         onClick={() =>
                             navigate(
                                 `/Teacher/class/student/marks/${studentID}/${teachSubjectID}`
                             )}>
                         Add Marks
-                    </PurpleButton>
+                    </RedButton>
                     <br /><br /><br />
                 </div>
             }

@@ -11,7 +11,7 @@ import {
     Typography, Stack,
     TextField, CircularProgress, FormControl
 } from '@mui/material';
-import { PurpleButton } from '../../../components/buttonStyles';
+import { RedButton } from '../../../components/buttonStyles';
 import Popup from '../../../components/Popup';
 
 const StudentAttendance = ({ situation }) => {
@@ -174,7 +174,7 @@ const StudentAttendance = ({ situation }) => {
                                     </FormControl>
                                 </Stack>
 
-                                <PurpleButton
+                                <RedButton
                                     fullWidth
                                     size="large"
                                     sx={{ mt: 3 }}
@@ -183,7 +183,7 @@ const StudentAttendance = ({ situation }) => {
                                     disabled={loader}
                                 >
                                     {loader ? <CircularProgress size={24} color="inherit" /> : "Submit"}
-                                </PurpleButton>
+                                </RedButton>
                             </form>
                         </Box>
                     </Box>

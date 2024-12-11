@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Grid, Box, Typography, Paper, Checkbox, FormControlLabel, TextField, CssBaseline, IconButton, InputAdornment, CircularProgress, Backdrop } from '@mui/material';
+import { Grid, Box, Typography, Paper, TextField, CssBaseline, IconButton, InputAdornment, CircularProgress, Backdrop } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import bgpic from "../assets/designlogin.jpg"
-import { LightPurpleButton } from '../components/buttonStyles';
+import { RedButton } from '../components/buttonStyles';
 import styled from 'styled-components';
 import { loginUser } from '../redux/userRelated/userHandle';
 import Popup from '../components/Popup';
-import ReCAPTCHA from 'react-google-recaptcha'; // Import reCAPTCHA
+import ReCAPTCHA from 'react-google-recaptcha'; 
 
 const defaultTheme = createTheme();
 
 const LoginPage = ({ role }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);
-
     const [toggle, setToggle] = useState(false);
     const [loader, setLoader] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
@@ -109,7 +107,6 @@ const LoginPage = ({ role }) => {
                         <Typography variant="h4" sx={{ mb: 2, color: "#2c2143" }}>
                             {role} Login
                         </Typography>
-                        <Typography variant="h7">Welcome back! Please enter your details</Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
                             {role === "Student" ? (
                                 <>
@@ -161,46 +158,24 @@ const LoginPage = ({ role }) => {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                               label = "Password"
                                 type={toggle ? 'text' : 'password'}
                                 id="password"
                                 autoComplete="current-password"
                                 error={passwordError}
                                 helperText={passwordError && 'Password is required'}
                                 onChange={handleInputChange}
-                                InputProps={{
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton onClick={() => setToggle(!toggle)}>
-                                                {toggle ? <Visibility /> : <VisibilityOff />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                }}
+                                 
                             />
                             <ReCAPTCHA
                                 sitekey="6LcqIpYqAAAAAHLvqauMVVhRa-tgOqnamHr2RjNn" // Replace with your actual site key
                                 onChange={handleCaptchaChange} // Handle CAPTCHA value
                                 style={{ marginTop: '16px' }} // Optional styling
                             />
-                            <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
-                                <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
-                                />
-                                <StyledLink href="#">Forgot password?</StyledLink>
-                            </Grid>
-                            <LightPurpleButton type="submit" fullWidth variant="contained" sx={{ mt: 3 }}>
+                            <RedButton type="submit" fullWidth variant="contained" sx={{ mt: 3 }}>
                                 {loader ? <CircularProgress size={24} color="inherit" /> : "Login"}
-                            </LightPurpleButton>
-                            {role === "Admin" && (
-                                <Grid container>
-                                    <Grid>Don't have an account?</Grid>
-                                    <Grid item sx={{ ml: 2 }}>
-                                        <StyledLink to="/Adminregister">Sign up</StyledLink>
-                                    </Grid>
-                                </Grid>
-                            )}
+                            </RedButton>
+                           
                         </Box>
                     </Box>
                 </Grid>

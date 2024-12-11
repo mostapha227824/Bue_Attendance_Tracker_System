@@ -8,7 +8,6 @@ import {
   CircularProgress,
   Backdrop,
 } from '@mui/material';
-import { AccountCircle, School, Group } from '@mui/icons-material';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Popup from '../components/Popup';
@@ -66,43 +65,31 @@ const ChooseUser = ({ visitor }) => {
   return (
     <StyledContainer>
       <Container>
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container spacing={20} justifyContent="center">
           <Grid item xs={12} sm={6} md={4}>
             <div onClick={() => navigateHandler("Admin")}>
               <StyledPaper elevation={3}>
-                <Box mb={2}>
-                  <AccountCircle fontSize="large" />
-                </Box>
                 <StyledTypography>
                   Admin
                 </StyledTypography>
-                Login as an administrator to access the dashboard to manage app data.
               </StyledPaper>
             </div>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <StyledPaper elevation={3}>
               <div onClick={() => navigateHandler("Student")}>
-                <Box mb={2}>
-                  <School fontSize="large" />
-                </Box>
                 <StyledTypography>
                   Student
                 </StyledTypography>
-                Login as a student to explore course materials and assignments.
               </div>
             </StyledPaper>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <StyledPaper elevation={3}>
               <div onClick={() => navigateHandler("Teacher")}>
-                <Box mb={2}>
-                  <Group fontSize="large" />
-                </Box>
                 <StyledTypography>
                   Teacher
                 </StyledTypography>
-                Login as a teacher to create courses, assignments, and track student progress.
               </div>
             </StyledPaper>
           </Grid>
@@ -123,11 +110,11 @@ const ChooseUser = ({ visitor }) => {
 export default ChooseUser;
 
 const StyledContainer = styled.div`
-  background: linear-gradient(to bottom, #411d70, #19118b);
+  background:#880808
   height: 120vh;
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  padding: 20rem;
 `;
 
 const StyledPaper = styled(Paper)`
@@ -138,11 +125,11 @@ const StyledPaper = styled(Paper)`
   cursor:pointer;
 
   &:hover {
-    background-color: #2c2c6c;
+    background-color: #880808;
     color:white;
   }
 `;
 
-const StyledTypography = styled.h2`
+const StyledTypography = styled.h1`
   margin-bottom: 10px;
 `;

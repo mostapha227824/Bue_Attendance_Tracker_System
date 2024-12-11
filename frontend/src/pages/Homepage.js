@@ -2,42 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Grid, Box, Button } from '@mui/material';
 import styled from 'styled-components';
-import Students from "../assets/students.svg";
-import { LightPurpleButton } from '../components/buttonStyles';
-
+import Students from "../assets/BueLogo.svg";
+import { RedButton } from '../components/buttonStyles';
 const Homepage = () => {
     return (
         <StyledContainer>
-            <Grid container spacing={0}>
-                <Grid item xs={12} md={6}>
+            <Grid>
+                <Grid >
                     <img src={Students} alt="students" style={{ width: '100%' }} />
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <StyledPaper elevation={3}>
-                        <StyledTitle>
-                            Welcome to
-                            <br />
-                            BUE Management
-                            <br />
-                            System
-                        </StyledTitle>
-                        <StyledText>
-                            The British university In egypt Attendance management System, Developed By ICS Students 2025 Class, Covers class organization, and add students and faculty.
-                        track attendance, assess performance.
-                            Access records, view marks.
-                        </StyledText>
-                        <StyledBox>
+                <Grid>
+                    <StyledPaper>
+                        <StyledBox > 
                             <StyledLink to="/choose">
-                                <LightPurpleButton variant="contained" fullWidth>
+                                <RedButton variant="contained" fullWidth>
                                     Login
-                                </LightPurpleButton>
+                                </RedButton>
                             </StyledLink>
-                            <StyledText>
-                                Don't have an account?{' '}
-                                <Link to="/Adminregister" style={{color:"#550080"}}>
+                                <Link to="/Adminregister" style={{color:"#AA4A44"}}>
                                     Sign up As Admin
                                 </Link>
-                            </StyledText>
                         </StyledBox>
                     </StyledPaper>
                 </Grid>
@@ -62,29 +46,10 @@ const StyledPaper = styled.div`
 
 const StyledBox = styled(Box)`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content:center;
   gap: 16px;
   padding: 24px;
-`;
-
-const StyledTitle = styled.h1`
-  font-size: 3rem;
-  color: #252525;
-  /* font-family: "Manrope"; */
-  font-weight: bold;
-  padding-top: 0;
-  letter-spacing: normal;
-  line-height: normal;
-`;
-
-const StyledText = styled.p`
-  /* color: #550080; */
-  margin-top: 30px;
-  margin-bottom: 30px; 
-  letter-spacing: normal;
-  line-height: normal;
 `;
 
 const StyledLink = styled(Link)`

@@ -7,13 +7,12 @@ import {
     Paper, Box, IconButton
 } from '@mui/material';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-import { BlackButton, BlueButton, GreenButton } from '../../../components/buttonStyles';
+import { RedButton, BlackButton } from '../../../components/buttonStyles';
 import TableTemplate from '../../../components/TableTemplate';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import SpeedDialTemplate from '../../../components/SpeedDialTemplate';
 
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material';
@@ -109,13 +108,13 @@ const ShowStudents = () => {
                 <IconButton onClick={() => deleteHandler(row.id, "Student")}>
                     <PersonRemoveIcon color="error" />
                 </IconButton>
-                <BlueButton variant="contained"
+                <RedButton variant="contained"
                     onClick={() => navigate("/Admin/students/student/" + row.id)}>
                     View
-                </BlueButton>
+                </RedButton>
                 <React.Fragment>
                     <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-                        <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+                        <BlackButton onClick={handleClick}>{options[selectedIndex]}</BlackButton>
                         <BlackButton
                             size="small"
                             aria-controls={open ? 'split-button-menu' : undefined}
@@ -188,9 +187,9 @@ const ShowStudents = () => {
                 <>
                     {response ?
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                            <GreenButton variant="contained" onClick={() => navigate("/Admin/addstudents")}>
+                            <BlackButton variant="contained" onClick={() => navigate("/Admin/addstudents")}>
                                 Add Students
-                            </GreenButton>
+                            </BlackButton>
                         </Box>
                         :
                         <Paper sx={{ width: '100%', overflow: 'hidden' }}>

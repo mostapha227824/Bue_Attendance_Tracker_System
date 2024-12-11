@@ -4,7 +4,7 @@ import { Box, Table, TableBody, TableContainer, TableHead, Typography, Paper } f
 import { useNavigate, useParams } from 'react-router-dom';
 import { getTeacherFreeClassSubjects } from '../../../redux/sclassRelated/sclassHandle';
 import { updateTeachSubject } from '../../../redux/teacherRelated/teacherHandle';
-import { GreenButton, PurpleButton } from '../../../components/buttonStyles';
+import { BlackButton, RedButton } from '../../../components/buttonStyles';
 import { StyledTableCell, StyledTableRow } from '../../../components/styles';
 
 const ChooseSubject = ({ situation }) => {
@@ -38,10 +38,10 @@ const ChooseSubject = ({ situation }) => {
         return <div>
             <h1>Sorry all subjects have teachers assigned already</h1>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                <PurpleButton variant="contained"
+                <RedButton variant="contained"
                     onClick={() => navigate("/Admin/addsubject/" + classID)}>
                     Add Subjects
-                </PurpleButton>
+                </RedButton>
             </Box>
         </div>;
     } else if (error) {
@@ -80,19 +80,19 @@ const ChooseSubject = ({ situation }) => {
                                     <StyledTableCell align="center">{subject.subCode}</StyledTableCell>
                                     <StyledTableCell align="center">
                                         {situation === "Norm" ?
-                                            <GreenButton variant="contained"
+                                            <BlackButton variant="contained"
                                                 onClick={() => navigate("/Admin/teachers/addteacher/" + subject._id)}>
                                                 Choose
-                                            </GreenButton>
+                                            </BlackButton>
                                             :
-                                            <GreenButton variant="contained" disabled={loader}
+                                            <BlackButton variant="contained" disabled={loader}
                                                 onClick={() => updateSubjectHandler(teacherID, subject._id)}>
                                                 {loader ? (
                                                     <div className="load"></div>
                                                 ) : (
                                                     'Choose Sub'
                                                 )}
-                                            </GreenButton>}
+                                            </BlackButton>}
                                     </StyledTableCell>
                                 </StyledTableRow>
                             ))}

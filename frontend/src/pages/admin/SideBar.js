@@ -6,8 +6,10 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
-import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
+
+import InfoIcon from '@mui/icons-material/Info';
 
 const SideBar = () => {
     const location = useLocation();
@@ -43,6 +45,12 @@ const SideBar = () => {
                         <PersonOutlineIcon color={location.pathname.startsWith("/Admin/students") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Students" />
+                </ListItemButton>
+                <ListItemButton component={Link} to="/Admin/forms">
+                    <ListItemIcon>
+                        <InfoIcon color={location.pathname.startsWith("/Admin/forms") ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Forms" />
                 </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />

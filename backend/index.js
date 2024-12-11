@@ -6,7 +6,7 @@ const axios = require("axios");
 const app = express();
 const Routes = require("./routes/route.js");
 
-const PORT = process.env.PORT || 50001;
+const PORT = process.env.PORT || 5001;
 
 // Load environment variables
 dotenv.config();

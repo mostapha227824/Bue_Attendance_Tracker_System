@@ -15,8 +15,8 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import StudentHomePage from './StudentHomePage';
 import StudentProfile from './StudentProfile';
 import StudentSubjects from './StudentSubjects';
+import StudentForm from './StudentForm';
 import ViewStdAttendance from './ViewStdAttendance';
-
 import Logout from '../Logout'
 import AccountMenu from '../../components/AccountMenu';
 import { AppBar, Drawer } from '../../components/styles';
@@ -39,7 +39,7 @@ const StudentDashboard = () => {
                             aria-label="open drawer"
                             onClick={toggleDrawer}
                             sx={{
-                                marginRight: '36px',
+                                marginRight: '306px',
                                 ...(open && { display: 'none' }),
                             }}
                         >
@@ -54,10 +54,10 @@ const StudentDashboard = () => {
                         >
                             Student Dashboard
                         </Typography>
-                        <AccountMenu />
+                        <AccountMenu/>
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent" open={open} sx={open ? styles.drawerStyled : styles.hideDrawer}>
+                <Drawer variant="permanent" open={open} >
                     <Toolbar sx={styles.toolBarStyled}>
                         <IconButton onClick={toggleDrawer}>
                             <ChevronLeftIcon />
@@ -78,6 +78,7 @@ const StudentDashboard = () => {
 
                         <Route path="/Student/subjects" element={<StudentSubjects />} />
                         <Route path="/Student/attendance" element={<ViewStdAttendance />} />
+                        <Route path="/Student/form" element={<StudentForm />} />
                         
 
                         <Route path="/logout" element={<Logout />} />

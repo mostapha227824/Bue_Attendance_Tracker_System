@@ -2,9 +2,8 @@ const router = require('express').Router();
 const { check } = require('express-validator');
 const { subjectCreate } = require('../controllers/subject-controller.js');
 const { adminRegister, adminLogIn, getAdminDetail} = require('../controllers/admin-controller.js');
-
+const {formCreate, formList, acceptForm, declineForm} = require('../controllers/absence-controller.js');
 const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('../controllers/class-controller.js');
-
 
 const {
     studentRegister,
@@ -69,6 +68,15 @@ router.delete("/Teacher/:id", deleteTeacher)
 router.put("/TeacherSubject", updateTeacherSubject)
 
 router.post('/TeacherAttendance/:id', teacherAttendance)
+
+// Form
+
+router.post('/FormCreate', formCreate);
+
+router.get('/FormList/:id', formList);
+
+router.post('/FormAccept/:formId', acceptForm);
+router.post('/FormDecline/:formId', declineForm);
 
 // Sclass
 

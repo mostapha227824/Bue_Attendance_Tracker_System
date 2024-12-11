@@ -12,7 +12,7 @@ import {
     getFailed,
     getError,
 } from './userSlice';
-const REACT_APP_BASE_URL = "http://localhost:50001";
+const REACT_APP_BASE_URL = "http://localhost:5001";
 export const loginUser = (fields, role) => async (dispatch) => {
     dispatch(authRequest());
 
@@ -106,18 +106,24 @@ export const updateUser = (fields, id, address) => async (dispatch) => {
 
 export const addStuff = (fields, address) => async (dispatch) => {
     dispatch(authRequest());
-
+    console.log("Starting to add stuff", fields);
     try {
         const result = await axios.post(`${REACT_APP_BASE_URL}/${address}Create`, fields, {
             headers: { 'Content-Type': 'application/json' },
         });
+        console.log("Server response:", result.data);
 
-        if (result.data.message) {
-            dispatch(authFailed(result.data.message));
-        } else {
+        if (result.data.message === 'Form submitted successfully') {
+            console.log("Dispatching stuffAdded with data", result.data);
             dispatch(stuffAdded(result.data));
+        } else {
+            console.log("Dispatching authFailed due to unexpected server response");
+            dispatch(authFailed("Unexpected response from server: " + result.data.message));
         }
     } catch (error) {
-        dispatch(authError(error));
+        console.error("Dispatch error:", error);
+        console.log("Response status:", error.response?.status);
+        console.log("Response error message:", error.response?.data?.message || error.message);
+        dispatch(authError(error.response?.data?.message || error.message));
     }
 };

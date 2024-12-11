@@ -1,4 +1,4 @@
-POST http://localhost:50001/AdminReg HTTP/1.1
+POST http://localhost:5001/AdminReg HTTP/1.1
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 
-POST http://localhost:50001/AdminLogin HTTP/1.1
+POST http://localhost:5001/AdminLogin HTTP/1.1
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
     "password": "12345"
 }
 
-PUT http://localhost:50001/StudentAttendance/67539acfcebb5ddbfd571dbc HTTP/1.1
+PUT http://localhost:5001/StudentAttendance/67539acfcebb5ddbfd571dbc HTTP/1.1
 Content-Type: application/json
 
 {

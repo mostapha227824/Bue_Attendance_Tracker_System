@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Typography } from '@mui/material'
 import { getAllSclasses } from '../../../redux/sclassRelated/sclassHandle';
 import { useNavigate } from 'react-router-dom';
-import { PurpleButton } from '../../../components/buttonStyles';
+import { RedButton } from '../../../components/buttonStyles';
 import TableTemplate from '../../../components/TableTemplate';
 
 const ChooseClass = ({ situation }) => {
@@ -44,10 +44,10 @@ const ChooseClass = ({ situation }) => {
     const SclassButtonHaver = ({ row }) => {
         return (
             <>
-                <PurpleButton variant="contained"
+                <RedButton variant="contained"
                     onClick={() => navigateHandler(row.id)}>
                     Choose
-                </PurpleButton>
+                </RedButton>
             </>
         );
     };
